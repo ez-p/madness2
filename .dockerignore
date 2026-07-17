@@ -1,0 +1,6 @@
+.git
+.gitignore
+*.pyc
+__pycache__
+db.sqlite3
+madness/staticfiles/
