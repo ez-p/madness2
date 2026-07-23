@@ -6,8 +6,6 @@ services:
     volumes:
       - .:/app
       - dbdata:/app/data
-    environment:
-      - DATABASE_URL=sqlite:////app/data/db.sqlite3
     command: python manage.py runserver 0.0.0.0:8000
 
 volumes:

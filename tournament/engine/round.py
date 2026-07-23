@@ -36,6 +36,6 @@ class Round:
             next_round.add(nextup[0])
             return next_round
 
-        for i in xrange(0, len(nextup), 2):
+        for i in range(0, len(nextup), 2):
             next_round.add((nextup[i], nextup[i+1]))
         return next_round

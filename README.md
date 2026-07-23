@@ -2,15 +2,10 @@
 
 Django web application that generates a random NCAA March Madness bracket according to team seeds.  The chance of a team advancing in the tournament is proportional to that team's seed.  For more details, read the help system.
 
-## Running Application
-Code is running at:
-
-https://youmadbro.herokuapp.com
-
 ## Installation
 
-This app runs on Python 2 and an old version of Django, so the easiest way to run
-it today is with Docker, which handles the Python 2 environment for you.
+This app runs on Python 3.12 and Django 5.2. Docker is the one supported way to
+run it locally, so dependency versions stay consistent across machines.
 
 ### Prerequisites
 
@@ -74,6 +69,15 @@ Anything from `manage.py`, e.g. the CLI simulator:
 docker compose run --rm web python manage.py cli -m 2 -e SeedOdds
 docker compose run --rm web python manage.py createsuperuser
 docker compose run --rm web python manage.py shell
+```
+
+### Running with gunicorn (prod-like)
+
+The dev server (`manage.py runserver`) is what `docker compose up` uses by
+default. To try it behind gunicorn instead:
+
+```bash
+docker compose run --rm --service-ports web gunicorn madness.wsgi --bind 0.0.0.0:8000 --log-file -
 ```
 
 ## Todo

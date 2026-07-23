@@ -1,16 +1,13 @@
 """
 Copyright 2016, Paul Powell, All rights reserved.
 """
-import hashlib
-
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.template import RequestContext
 from django.conf import settings
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 import django.views.generic as generic
 
 import tournament.engine.tourney as tourney
@@ -27,9 +24,11 @@ class RegisterView(generic.CreateView):
     def form_valid(self,form):
         username = form.cleaned_data['username']
         password = form.cleaned_data['password1']
-        hashed_pw = hashlib.md5(password).hexdigest()
 
-        User.objects.get_or_create(username=username, defaults={'password':hashed_pw, 'is_active':True})
+        user, created = User.objects.get_or_create(username=username, defaults={'is_active':True})
+        if created:
+            user.set_password(password)
+            user.save()
 
         user = authenticate(username=username, password=password)
         if user:
@@ -191,7 +190,7 @@ def _view_base_results(request, result_id):
                'is_saved':False,
                }
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         if request.user.tournament_set.filter(id=result_id):
             results['is_saved'] = True
 
@@ -274,5 +273,5 @@ def help_show(request):
 def help_year(request):
     return render(request, 'help_year.html')
 
-def print_bracket(request):
-    return render(request, 'ok')
+def print_bracket(request, result_id):
+    return view_full_result(request, result_id)

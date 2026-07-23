@@ -35,9 +35,9 @@
 <body>
     <div class="content container" id=wrap>
     <div class="row">
-	<nav class="navbar navbar=default">
-	    <div class="container=fluid">
-		<div class="navbar=header">
+	<nav class="navbar navbar-default">
+	    <div class="container-fluid">
+		<div class="navbar-header">
 		    <a class="navbar-brand" href="/">Madness</a>
 		</div>
 		<ul class="nav navbar-nav">
@@ -49,7 +49,12 @@
 		    </ul>
 		    {% else %}
 		    <li><a href="{% url 'my-brackets' %}"><span class="glyphicon glyphicon-list"> My Brackets</span></a></li>
-		    <li><a href="{% url 'django.contrib.auth.views.logout' %}"><span class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+		    <li>
+			<form method="post" action="{% url 'logout' %}" class="navbar-form" style="padding:0;margin:0;">
+			    {% csrf_token %}
+			    <button type="submit" class="btn btn-link navbar-btn" style="padding:0;"><span class="glyphicon glyphicon-log-out"> Logout</span></button>
+			</form>
+		    </li>
 		    {% include "help_menu.html" %}
 		    {% endif %}
 		</ul>

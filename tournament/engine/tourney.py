@@ -1,8 +1,7 @@
 """
 Copyright 2016, Paul Powell, All rights reserved.
 """
-import region
-import data 
+from tournament.engine import region, data
 
 class Tournament:
     def __init__(self, year, winner, second, madness, algorithm):

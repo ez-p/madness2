@@ -1,11 +1,6 @@
-dj-database-url==0.4.1
-Django==1.9.5
-django-admin-bootstrapped==2.5.7
-django-bootstrap3==7.0.1
-django-crispy-forms==1.6.0
-django-extensions==1.6.7
-gunicorn==19.6.0
-psycopg2==2.8.6
-six==1.10.0
-wheel==0.26.0
-whitenoise==2.0.6
+crispy-bootstrap3==2024.1
+Django==5.2.16
+django-crispy-forms==2.6
+django-extensions==4.1
+gunicorn==26.0.0
+whitenoise==6.12.0

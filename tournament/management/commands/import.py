@@ -19,9 +19,9 @@ class Command(BaseCommand):
         b.save()
     
     def import_years(self):
-        import _data_2015 as data2015
-        import _data_2016 as data2016
-        import _data_2017 as data2017
+        from tournament.management.commands import _data_2015 as data2015
+        from tournament.management.commands import _data_2016 as data2016
+        from tournament.management.commands import _data_2017 as data2017
 
         y = Year(year=data2015.year)
         y.save()
@@ -44,7 +44,7 @@ class Command(BaseCommand):
             r.year = year
             r.save()
 
-        for a,b in data.exclusives.iteritems():
+        for a,b in data.exclusives.items():
             r1 = RegionData.objects.filter(year=year).get(name=a)
             r2 = RegionData.objects.filter(year=year).get(name=b)
             r1.exclusive = r2

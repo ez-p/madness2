@@ -1,8 +1,7 @@
 """
 Copyright 2016, Paul Powell, All rights reserved.
 """
-import team
-import round
+from tournament.engine import team, round
 
 class Region:
     def __init__(self, name, teams, algorithm):
@@ -43,8 +42,8 @@ class Region:
             for game in matchup:
                 for team in game:
                     if team.name == winner:
-                        print "found winner"
+                        print("found winner")
                         team.sf = 3
                     if team.name == second:
-                        print "found second"
+                        print("found second")
                         team.sf = 2

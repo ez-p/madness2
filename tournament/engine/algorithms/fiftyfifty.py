@@ -2,7 +2,7 @@
 Copyright 2016, Paul Powell, All rights reserved.
 """
 import random
-from matchup import Matchup
+from tournament.engine.algorithms.matchup import Matchup
 
 #
 # Implement a matchup between two teams

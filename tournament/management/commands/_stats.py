@@ -56,25 +56,25 @@ class Stats:
             self.print_stats()
 
     def _run(self):
-        print "Running {} iterations.".format(self.iterations)
+        print("Running {} iterations.".format(self.iterations))
         start = datetime.datetime.now()
         for i in range(self.iterations):
             if i and not i % 5000:
-                print "Completed {} iterations.".format(i)
+                print("Completed {} iterations.".format(i))
             t = tourney.Tournament(self.year, self.winner, self.second,
                                    self.madness, self.algorithm)
             self.results.append(t())
         done = datetime.datetime.now()
         duration = done-start
-        print "Time to run: {} days {} seconds".format(duration.days, duration.seconds)
+        print("Time to run: {} days {} seconds".format(duration.days, duration.seconds))
 
     def _print(self,text):
         self.fh.write("{}\n".format(text))
-        print text
+        print(text)
 
     def print_stats(self):
         upset_total = 0
-        print "\nCalculating upsets..."
+        print("\nCalculating upsets...")
         for r in self.results:
             upset_total += upsets(self.year, r)
         average = upset_total/self.iterations
@@ -83,7 +83,7 @@ class Stats:
 
     def print_winners(self):
         winners = {}
-        print "Calculating top winners"
+        print("Calculating top winners")
         for r in self.results:
             if winners.get(r['champion'].name):
                 winners[r['champion'].name]['count'] += 1

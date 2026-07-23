@@ -12,9 +12,7 @@ import abc
 #
 # Implementations must implement the _play method
 #
-class Matchup:
-    __metaclass__ = abc.ABCMeta
-
+class Matchup(metaclass=abc.ABCMeta):
     def __init__(self, teams):
         self.teams = teams
 
